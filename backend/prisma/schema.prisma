@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  email String
+  username String? @unique
+  password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  photo String?
+  capsule Capsule[]
+  useraCapsule UserCapsule[]
+  isAdmin Boolean @default(false)
+}
+
+model Capsule {
+  id String @id @default(uuid())
+  userId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  closeTime DateTime 
+  songs String?
+  image String?
+  letter String?
+  isClosed Boolean
+  user User @relation(fields: [userId], references: [id])
+  userCapsule UserCapsule[]
+}
+
+model UserCapsule {
+  id String @id @default(uuid())
+  userId String
+  capsuleId String
+
+  user User @relation(fields: [userId], references: [id]) 
+  capsule Capsule @relation(fields: [capsuleId], references: [id])
+}
+
