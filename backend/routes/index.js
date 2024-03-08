@@ -4,7 +4,7 @@ const passport = require("passport");
 const router = express.Router();
 
 router.use("/auth", require("./auth"));
-router.use("/", require("./home"));
+router.use("/capsule", require("./capsule"));
 router.use("/profile", isAuthenticated, require("./profile"));
 
 module.exports = router;
