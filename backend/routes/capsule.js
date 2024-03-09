@@ -3,6 +3,7 @@ const router = express.Router();
 const isAuthenticated = require("../middlewares/isAuthenticated");
 const prisma = require("../prisma");
 
+//route for creating a capsule.
 router.post('/create', async (req, res) => {
   const { users, capsuleName, password, closeTime, songs = [], image = [], letter = [], isClosed = false } = req.body;
   const usersArr = users.map((user) => ({ username: user }));
@@ -23,12 +24,14 @@ router.post('/create', async (req, res) => {
   res.json({ message: "capsule created" });
 });
 
-router.get("/", async (req, res) => {
+//route for seeing all user capsules.
+router.get("/", isAuthenticated, async (req, res) => {
+  const userId = req.user.id;
   const userCapsules = await prisma.capsule.findMany({
     where: {
       users: {
         some: {
-          id: "c751af07-9e2e-43ca-b6ce-28bf45380b76",
+          id: userId,
         },
       },
     },
@@ -36,4 +39,20 @@ router.get("/", async (req, res) => {
   res.json({ message: "Your capsules:", userCapsules });
 });
 
+//route for updating a capsule by id.
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { songs, image, letter } = req.body;
+  await prisma.capsule.update({
+    where: { id },
+    data: {
+      songs,
+      image,
+      letter,
+    },
+  });
+  res.json({ message: "capsule updated" });
+});
+
 module.exports = router;
+
