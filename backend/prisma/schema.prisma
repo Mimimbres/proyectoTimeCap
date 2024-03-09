@@ -28,7 +28,7 @@ model Capsule {
   password String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  closeTime DateTime 
+  closeTime String 
   songs String[]
   image String[]
   letter String[]
