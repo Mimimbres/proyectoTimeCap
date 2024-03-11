@@ -38,6 +38,15 @@ router.get("/", isAuthenticated, async (req, res) => {
   });
   res.json({ message: "Your capsules:", userCapsules });
 });
+//route for seeing a capsule by id, needes password from req.body
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { password } = req.body;
+  const capsule = await prisma.capsule.findUnique({
+    where: { id, password },
+  });
+  res.json({ message: "capsule:", capsule });
+});
 
 //route for updating a capsule by id.
 router.put("/:id", async (req, res) => {
