@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     queryKey: ["currentUser"],
     queryFn: isUserLoggedIn,
   });
-
+console.log(data)
   useEffect(() => {
     if (data?.user) {
       setCurrentUser(data?.user);

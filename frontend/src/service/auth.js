@@ -18,6 +18,7 @@ const postRegister = async ({ email, password }) => {
 
 const isUserLoggedIn = async () => {
   const { data } = await api.get("/auth/logged-in");
+  console.log(data);
   return data;
 }
 

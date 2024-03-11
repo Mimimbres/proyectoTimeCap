@@ -46,6 +46,7 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.get("/logged-in", passport.authenticate('jwt', { session: false }), (req, res) => {
+  console.log(req);
   try {
     res.json({ user: req.user });
   } catch (error) {
