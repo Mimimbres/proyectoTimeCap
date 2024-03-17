@@ -10,8 +10,8 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 
 const cookieSettings = {
   httpOnly: true,
-  secure: false, 
-  sameSite: "strict", 
+  secure: true, 
+  sameSite: "None", 
 }
 
 router.post("/register", async (req, res) => {
@@ -40,13 +40,11 @@ router.post("/login", async (req, res, next) => {
       .cookie("token", jwtToken, cookieSettings)
       .send("Cookie is set");
   } catch (error) {
-    console.log(error);
     res.status(500).send("Internal Server Error");
   }
 });
 
 router.get("/logged-in", passport.authenticate('jwt', { session: false }), (req, res) => {
-  console.log(req);
   try {
     res.json({ user: req.user });
   } catch (error) {

@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { postLogin } from "../service/auth";
+import "./AuthForm.css";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div className="auth-form">
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">
           Email

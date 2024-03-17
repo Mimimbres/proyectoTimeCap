@@ -14,7 +14,10 @@ export const useCapsules = () => {
 
     return {data, isLoading}
   }
-  const getCapsule =(id) => {
+  const getCapsule = async (id) => {
+      const response = await fetch(`http://localhost:3000/capsule/${id}`);
+      const data = await response.json();
+      return data [0];
   }
 
   return {getAllCapsules, getCapsule}

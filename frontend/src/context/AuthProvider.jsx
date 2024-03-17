@@ -10,8 +10,8 @@ export const AuthProvider = ({ children }) => {
   const { data } = useQuery({
     queryKey: ["currentUser"],
     queryFn: isUserLoggedIn,
+    retry: 1,
   });
-console.log(data)
   useEffect(() => {
     if (data?.user) {
       setCurrentUser(data?.user);

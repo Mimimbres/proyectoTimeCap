@@ -1,0 +1,40 @@
+/* AuthForm.css */
+.auth-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-form form {
+  width: 300px; 
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="submit"] {
+  width: calc(100% - 20px); 
+  padding: 10px; 
+  margin-bottom: 10px;
+}
+
+.auth-form input[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.auth-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
