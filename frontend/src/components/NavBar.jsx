@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+// components/NavBar.js
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
 import { AppBar, Toolbar, Button } from "@mui/material";
 
 export const NavBar = () => {
   return (
+    <>
     <AppBar position="static">
       <Toolbar>
         <Link to="/" style={{ textDecoration: "none", flexGrow: 1 }}>
@@ -16,5 +19,7 @@ export const NavBar = () => {
         </Link>
       </Toolbar>
     </AppBar>
+    <Outlet />
+    </>
   );
 };

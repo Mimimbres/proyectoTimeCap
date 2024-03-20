@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-export const CountriesPage = () => {
+export const GetAllCapsules = () => {
   const [showFlags, setShowFlags] = useState(false);
   const countryApi = 'https://restcountries.com/v3.1/all';
   const fetchData = async () => {
