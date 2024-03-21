@@ -17,7 +17,6 @@ passport.use(
   new JwtStrategy(opts, async function (jwt_payload, done) {
   
     try {
-      console.log("hello world")
       const user = await prisma.user.findFirst({
         where: { email: jwt_payload.sub },
       });

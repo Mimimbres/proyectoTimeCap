@@ -4,8 +4,17 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 const prisma = require("../prisma");
 
 //route for creating a capsule.
-router.post('/create', async (req, res) => {
-  const { users, capsuleName, password, closeTime, songs = [], image = [], letter = [], isClosed = false } = req.body;
+router.post("/create", async (req, res) => {
+  const {
+    users,
+    capsuleName,
+    password,
+    closeTime,
+    songs = [],
+    image = [],
+    letter = [],
+    isClosed = false,
+  } = req.body;
   const usersArr = users.map((user) => ({ username: user }));
   await prisma.capsule.create({
     data: {
@@ -17,7 +26,7 @@ router.post('/create', async (req, res) => {
       letter,
       isClosed,
       users: {
-        connect: usersArr
+        connect: usersArr,
       },
     },
   });
@@ -25,15 +34,10 @@ router.post('/create', async (req, res) => {
 });
 
 //route for seeing all user capsules.
-router.get("/", isAuthenticated, async (req, res) => {
-  const userId = req.user.id;
+router.get("/" ,async (req, res) => {
   const userCapsules = await prisma.capsule.findMany({
-    where: {
-      users: {
-        some: {
-          id: userId,
-        },
-      },
+    include: {
+      users: true,
     },
   });
   res.json({ message: "Your capsules:", userCapsules });
@@ -64,4 +68,3 @@ router.put("/:id", async (req, res) => {
 });
 
 module.exports = router;
-

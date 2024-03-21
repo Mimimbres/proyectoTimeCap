@@ -1,24 +1,55 @@
-import {useQuery} from '@tanstack/react-query'
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 export const useCapsules = () => {
-  const getAllCapsules = () => {
+  const getAllCapsules = (userId) => {
+    const [capsules, setCapsules] = useState([]);
     const getData = async () => {
-      const response = await fetch('http://localhost:3000/capsule/')
-      const data = await response.json()
-      return data
-    }
-    const {data, isLoading} = useQuery({
-      queryKey: ['userCapsules'],
-      queryFn: async() => await getData(),
-    })
+      const response = await fetch("http://localhost:3000/capsule/", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      return data?.userCapsules;
+    };
+  
 
-    return {data, isLoading}
-  }
-  const getCapsule = async (id) => {
+    const setData = async () => {
+      const data = await getData();
+      const userCapsules = []; 
+      data?.map((capsule)=>{
+        capsule.users.map((user) => {
+          if(user.id === userId) {
+            userCapsules.push(capsule) 
+          }
+        })
+      });
+      setCapsules(userCapsules);
+    }
+
+    const { isLoading } = useQuery({
+      queryKey: ["userCapsules"],
+      queryFn: async () => await setData(),
+    });
+
+    return { capsules , isLoading };
+  };
+  const getCapsule = (id) => {
+  const [capsule, setCapsule] = useState({});
+
+    const getData = async () => {
       const response = await fetch(`http://localhost:3000/capsule/${id}`);
       const data = await response.json();
-      return data [0];
-  }
+      return data?.capsule;
+    };
+    const { isLoading } = useQuery({
+      queryKey: ["singleCapsule"],
+      queryFn: async () => setCapsule(await getData()),
+    });
 
-  return {getAllCapsules, getCapsule}
-}
+    return { capsule, isLoading };
+  };
+
+  return { getAllCapsules, getCapsule };
+};

@@ -1,34 +1,21 @@
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useCapsules } from '../hooks/useCapsules';
+import { useAuth } from '../hooks/useAuth';
+import { useEffect } from 'react';
+
 
 export const GetCapsule = () => {
-  const { id }= useParams();
+const { id } = useParams();
+const { getCapsule } = useCapsules();
+const { capsule, isLoading } = getCapsule(id);
 
-
-  const fetchDataById = async (id) => {
-    const response = await fetch(`https://restcountries.com/v3.1/alpha/${id}`);
-    const jsonData = await response.json();
-    return jsonData[0];
-  };
-
-  const { data: countryData, isLoading } = useQuery({
-    queryKey: ["singleCountry", id],
-    queryFn: () => fetchDataById(id),
-    enabled: !!id,
-  });
-console.log(countryData);
-
-  if (isLoading || !countryData) {
-    return <h1>LOADING...</h1>;
-  }
-
-  return ( // eslint-disable-line no-console
-    <>
-      <h1>{countryData.name.official}</h1>
-      <p>Country Code: {countryData.cca2}</p>
-      <p>Capital: {countryData.capital} </p>
-      <p>Region: {countryData.region}</p>
-      <h2><b>FLAG:</b></h2><img src={countryData.flags.png} alt={countryData.flags.alt} />
-    </>
-  );
-} 
+isLoading && <p>Loading...</p>
+console.log(capsule)
+      return (
+        <>
+        <p>{JSON.stringify(capsule)}</p>
+        </>
+      )
+     
+    };
+    
