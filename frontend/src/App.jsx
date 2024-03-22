@@ -5,7 +5,6 @@ import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
 import RequireAuth from "./components/ProtectedRoute";
 import { GetAllCapsules } from "./pages/GetAllCapsules";
-import { GetCapsule } from "./pages/GetCapsule";
 import CreateCapsules from "./pages/CreateCapsules";
 
 function App() {
@@ -14,7 +13,6 @@ function App() {
       <Route element={<NavBar />}>
         <Route element={<RequireAuth />}>
           <Route path="/capsules" element={<GetAllCapsules />} />
-          <Route path="/capsule/:id" element={<GetCapsule />} />
           <Route path="/create-capsules" element={<CreateCapsules />} />
         </Route>
         <Route path="/" element={<HomePage />} />
