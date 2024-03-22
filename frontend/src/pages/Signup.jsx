@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { postRegister } from "../service/auth";
-import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import { useNavigate } from "react-router-dom"; 
 import "./AuthForm.css";
 
 export default function SignUp() {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate(); 
   const {
     register,
     handleSubmit,
@@ -16,7 +16,7 @@ export default function SignUp() {
     mutationKey: "signup",
     mutationFn: postRegister,
     onSuccess: () => {
-      navigate("/login"); // Redirect to login page after successful signup
+      navigate("/login"); 
     },
   });
 

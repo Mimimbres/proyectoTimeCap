@@ -22,34 +22,34 @@ export const GetCapsule = () => {
   });
 
   return (
-    <div style={{ display: 'flex' }}>
-      <div style={{ flex: '1' }}>
-        <Card variant="outlined" sx={{ borderRadius: 4, width: '25%' }}>
-          <CardContent>
-            <Typography variant="h5" component="h1" gutterBottom>
-              Nombre de la cápsula: {capsule.capsuleName}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              Fecha de creación: {createdAtFormatted}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              Fecha de cierre: {capsule.closeTime}
-            </Typography>
-            <Typography variant="h6" gutterBottom>
-              Canciones🎶:
-            </Typography>
-            <ul>
-              {capsule.songs && capsule.songs.map((song, index) => (
-                <li key={index}>
-                  <Typography variant="body2">{song}</Typography>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+    <div style={{ margin: '20px' }}> {/* Adjust the margin value as needed */}
+      <div style={{ display: 'flex' }}>
+        <div style={{ flex: '1' }}>
+          <Card variant="outlined" sx={{ borderRadius: 4, width: '25%' }}>
+            <CardContent>
+              <Typography variant="h5" component="h1" gutterBottom>
+                Nombre de la cápsula: {capsule.capsuleName}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Fecha de creación: {createdAtFormatted}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Fecha de cierre: {capsule.closeTime}
+              </Typography>
+              <Typography variant="h6" gutterBottom>
+                Canciones🎶:
+              </Typography>
+              <ul>
+                {capsule.songs && capsule.songs.map((song, index) => (
+                  <li key={index}>
+                    <Typography variant="body2">{song}</Typography>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
 };
-
-

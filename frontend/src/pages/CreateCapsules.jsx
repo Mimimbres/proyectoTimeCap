@@ -1,4 +1,3 @@
-// CreateCapsule.js
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -12,10 +11,11 @@ const CreateCapsule = () => {
       const response = await axios.post("/create", data);
       setMessage(response.data.message);
     } catch (error) {
-      console.error("Error creating capsule:", error);
+      console.error("Error creating capsule:", error.response.data);
       setMessage("Error creating capsule");
     }
   };
+  
 
   return (
     <div>
@@ -37,7 +37,7 @@ const CreateCapsule = () => {
         <input type="text" {...register("users", { required: false})} />
         {errors.users && <span>This field is required</span>}
 
-        {/* Add more input fields for other capsule properties like songs, image, letter, etc. */}
+        
 
         <button type="submit">Create Capsule</button>
       </form>
