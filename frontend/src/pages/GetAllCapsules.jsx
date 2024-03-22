@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useCapsules } from '../hooks/useCapsules';
 import { useAuth } from '../hooks/useAuth';
 import { useEffect } from 'react';
+import { CircularProgress} from "@mui/material";
 
 
 export const GetAllCapsules = () => {
@@ -9,7 +10,9 @@ const auth = useAuth();
 const { getAllCapsules } = useCapsules();
 const { capsules, isLoading } = getAllCapsules(auth.currentUser.id);
 
-isLoading && <div>Loading...</div>;
+if (isLoading) {
+  return <CircularProgress />;
+}
 
 console.log(capsules)
   return (

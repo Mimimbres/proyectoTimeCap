@@ -21,4 +21,8 @@ const isUserLoggedIn = async () => {
   return data;
 }
 
-export { postLogin, postRegister, isUserLoggedIn };
+const postLogout = async () => {
+  await api.post("/auth/logout");
+}
+
+export { postLogin, postRegister, isUserLoggedIn , postLogout };

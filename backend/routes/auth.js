@@ -53,4 +53,11 @@ router.get("/logged-in", passport.authenticate('jwt', { session: false }), (req,
   }
 });
 
+// Logout route
+router.post("/logout", (req, res) => {
+  res.clearCookie("token", cookieSettings); // Clear the token cookie
+  res.send("Logged out successfully");
+});
+
+
 module.exports = router;
