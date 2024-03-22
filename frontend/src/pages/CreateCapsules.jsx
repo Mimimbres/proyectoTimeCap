@@ -1,24 +1,11 @@
 // CreateCapsule.js
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 const CreateCapsule = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [message, setMessage] = useState("");
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get("/users");
-        setUsers(response.data.users);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-    fetchUsers();
-  }, []);
 
   const onSubmit = async (data) => {
     try {
@@ -47,15 +34,8 @@ const CreateCapsule = () => {
         {errors.closeTime && <span>This field is required</span>}
 
         <label htmlFor="users">Users:</label>
-        <select {...register("users")}>
-          <option value="">Select a user</option>
-          
-          {users.map((user) => (
-            <option key={user.id} value={user.username}>
-              {user.username}
-            </option>
-          ))}
-        </select>
+        <input type="text" {...register("users", { required: false})} />
+        {errors.users && <span>This field is required</span>}
 
         {/* Add more input fields for other capsule properties like songs, image, letter, etc. */}
 
