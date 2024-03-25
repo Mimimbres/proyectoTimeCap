@@ -5,6 +5,7 @@ const prisma = require("../prisma");
 
 //route for creating a capsule.
 router.post("/create", async (req, res) => {
+  console.log(req.body)
   const {
     users,
     capsuleName,
