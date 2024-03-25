@@ -18,28 +18,36 @@ const CreateCapsule = () => {
   
 
   return (
-    <div>
+    <div style={{ margin: '20px', maxWidth: '400px' }}> {/* Adjust margin and max-width as needed */}
       <h1>Create Capsule</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="capsuleName">Capsule Name:</label>
-        <input type="text" {...register("capsuleName", { required: true })} />
-        {errors.capsuleName && <span>This field is required</span>}
+        <div style={{ marginBottom: '10px' }}> {/* Add margin bottom to space out inputs */}
+          <label htmlFor="capsuleName">Capsule Name:</label>
+          <input type="text" {...register("capsuleName", { required: true })} />
+          {errors.capsuleName && <span>This field is required</span>}
+        </div>
 
-        <label htmlFor="password">Password:</label>
-        <input type="password" {...register("password", { required: true })} />
-        {errors.password && <span>This field is required</span>}
+        <div style={{ marginBottom: '10px' }}> {/* Add margin bottom to space out inputs */}
+          <label htmlFor="password">Password:</label>
+          <input type="password" {...register("password", { required: true })} />
+          {errors.password && <span>This field is required</span>}
+        </div>
 
-        <label htmlFor="closeTime">Close Time:</label>
-        <input type="datetime-local" {...register("closeTime", { required: true })} />
-        {errors.closeTime && <span>This field is required</span>}
+        <div style={{ marginBottom: '10px' }}> {/* Add margin bottom to space out inputs */}
+          <label htmlFor="closeTime">Close Time:</label>
+          <input type="datetime-local" {...register("closeTime", { required: true })} />
+          {errors.closeTime && <span>This field is required</span>}
+        </div>
 
-        <label htmlFor="users">Users:</label>
-        <input type="text" {...register("users", { required: false})} />
-        {errors.users && <span>This field is required</span>}
+        <div style={{ marginBottom: '10px' }}> {/* Add margin bottom to space out inputs */}
+          <label htmlFor="users">Users:</label>
+          <input type="text" {...register("users", { required: false})} />
+          {errors.users && <span>This field is required</span>}
+        </div>
 
-        
-
-        <button type="submit">Create Capsule</button>
+        <div style={{ marginTop: '20px' }}> {/* Add margin top to space out button */}
+          <button type="submit">Create Capsule</button>
+        </div>
       </form>
       {message && <p>{message}</p>}
     </div>

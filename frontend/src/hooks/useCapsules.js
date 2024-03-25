@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 export const useCapsules = () => {
@@ -51,5 +51,57 @@ export const useCapsules = () => {
     return { capsule, isLoading };
   };
 
-  return { getAllCapsules, getCapsule };
+  const createCapsule =  () => {
+    const submitData = async (capsuleData) =>{
+      await fetch('http://localhost:3000/capsule/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(capsuleData),
+      })
+    } 
+
+  const { mutate } = useMutation({
+    mutationFn: async (body) =>await submitData(body),
+  })
+
+  return { mutate }
+  }
+
+  const updateCapsule = (id) => {
+    const submitData = async (capsuleData) =>{
+      await fetch('http://localhost:3000/capsule/${id}', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(capsuleData),
+      })
+    }
+
+    const { mutate } = useMutation({
+     mutationFn: async (body) =>await submitData(body),
+    })
+
+  return { mutate } 
+}
+
+const deleteCapsule = (id) => {
+  const deleteData = async () =>{
+    await fetch('http://localhost:3000/capsule/${id}', {
+      method: 'DELETE',
+    })
+  }
+
+  const { mutate } = useMutation({
+   mutationFn: async () =>await deleteData(),
+  })
+
+return { mutate }
+}
+  
+
+
+  return { getAllCapsules, getCapsule , createCapsule , updateCapsule , deleteCapsule};
 };

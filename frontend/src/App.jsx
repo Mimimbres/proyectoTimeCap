@@ -15,7 +15,7 @@ function App() {
         <Route element={<RequireAuth />}>
           <Route path="/capsules" element={<GetAllCapsules />} />
           <Route path="/create-capsules" element={<CreateCapsules />} />
-          <Route path="/capsules/:id" element={<GetCapsule />} />
+          <Route path="/capsule/:id" element={<GetCapsule />} />
         </Route>
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignUp />} />

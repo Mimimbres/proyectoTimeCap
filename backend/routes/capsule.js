@@ -15,7 +15,7 @@ router.post("/create", async (req, res) => {
     letter = [],
     isClosed = false,
   } = req.body;
-  const usersArr = users.map((user) => ({ username: user }));
+  const usersArr = users.map((user) => ({ username: user })); 
   await prisma.capsule.create({
     data: {
       capsuleName,
@@ -65,6 +65,13 @@ router.put("/:id", async (req, res) => {
     },
   });
   res.json({ message: "capsule updated" });
+});
+
+//route for deleting a capsule by id.
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  await prisma.capsule.delete({ where: { id } });
+  res.json({ message: "capsule deleted" });
 });
 
 module.exports = router;
