@@ -23,17 +23,17 @@ const CreateCapsule = () => {
   
 
   return (
-    <div style={{ margin: '20px', maxWidth: '400px' }}> {/* Adjust margin and max-width as needed */}
+    <div style={{ margin: '20px', maxWidth: '400px' }}> 
       <h1>Create Capsule</h1>
       <br />
       <form onSubmit={handleSubmit(data => handleForm(data))}>
-        <div style={{ marginBottom: '10px' }}> {/* Add margin bottom to space out inputs */}
+        <div style={{ marginBottom: '10px' }}> 
           <label htmlFor="capsuleName">Capsule Name:</label>
           <input type="text" {...register("capsuleName", { required: true })} />
          
         </div>
 
-        <div style={{ marginBottom: '10px' }}> {/* Add margin bottom to space out inputs */}
+        <div style={{ marginBottom: '10px' }}> 
           <label htmlFor="password">Password:</label>
           <input type="password" {...register("password", { required: true })} />
          
@@ -50,12 +50,7 @@ const CreateCapsule = () => {
           <input type="text" placeholder= "usuario"{...register("users.0", { required: false})} />
         
         </div>
-        <div style={{ marginBottom: '10px' }}> 
-          <label htmlFor="users">Users:</label>
-          <input type="text" placeholder= "usuario"{...register("users.1", { required: false})} />
-    
-        </div>
-        <button type="button" onClick={()=>handleForm()}>Ver usuarios </button>
+        {/* <button type="button" onClick={()=>handlecForm()}>Ver usuarios </button> */}
         <br />
         <br />
 
@@ -87,7 +82,7 @@ const CreateCapsule = () => {
         </div>
 
         <div style={{ marginTop: '20px' }}> 
-          <button type="submit">Create Capsule</button>
+          <button type="submit" onClick={(data)=>handleForm(data)}>Create Capsule</button>
         </div>
       </form>
       {message && <p>{message}</p>}

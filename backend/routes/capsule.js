@@ -16,7 +16,7 @@ router.post("/create", async (req, res) => {
     letter = [],
     isClosed = false,
   } = req.body;
-  const usersArr = users.map((user) => ({ username: user })); 
+  const usersArr = users?.map((user) => ({ username: user })); 
   await prisma.capsule.create({
     data: {
       capsuleName,
