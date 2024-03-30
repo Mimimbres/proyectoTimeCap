@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { postLogin } from "../service/auth";
+import { queryClient } from "../main";
 import "./AuthForm.css";
 
 export default function Login() {
@@ -16,6 +17,7 @@ export default function Login() {
     mutationKey: "login",
     mutationFn: postLogin,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["currentUser"] });
       navigate("/");
     },
     onError: (error) => {

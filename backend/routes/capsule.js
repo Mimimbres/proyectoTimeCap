@@ -54,7 +54,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //route for updating a capsule by id.
-router.put("/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   const { id } = req.params;
   const { songs, image, letter } = req.body;
   await prisma.capsule.update({

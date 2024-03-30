@@ -12,6 +12,8 @@ export const NavBar = () => {
   };
 
   const auth = useAuth();
+  
+
 
   return (
     <>

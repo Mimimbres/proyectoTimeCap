@@ -89,7 +89,7 @@ export const useCapsules = () => {
 
 const deleteCapsule = (id) => {
   const deleteData = async () =>{
-    await fetch('http://localhost:3000/capsule/${id}', {
+    await fetch(`http://localhost:3000/capsule/${id}`, {
       method: 'DELETE',
     })
   }
