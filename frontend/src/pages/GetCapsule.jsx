@@ -14,13 +14,10 @@ export const GetCapsule = () => {
     navigate('/capsules')
     }
 
- 
-
   if (isLoading) {
     return <CircularProgress />;
   }
 
-  // Format the creation date
   const createdAtFormatted = new Date(capsule.createdAt).toLocaleString(undefined, {
     year: 'numeric',
     month: 'numeric',
@@ -54,7 +51,7 @@ export const GetCapsule = () => {
                   </li>
                 ))}
               </ul>
-              <Button variant="contained" color="primary" onClick={() => navigate(`/update/${id}`)}>Update</Button>
+              {/* <Button variant="contained" color="primary" onClick={() => navigate(`/update/${id}`)}>Update</Button> */}
               <Button variant="contained" color="error" onClick={handleDelete}>Delete</Button>
             </CardContent>
           </Card>
